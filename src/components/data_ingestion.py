@@ -10,6 +10,8 @@ from dataclasses import dataclass
 
 from src.components.data_transformation import DataTransformation, DataTransformationConfig
 
+from src.components.model_trainer import ModelTrainer, ModelTrainerConfig
+
 @dataclass
 class DataIngestionConfig:
     train_data_path: str = os.path.join('artifacts', 'train.csv')
@@ -47,12 +49,3 @@ class DataIngestion:
 
         except Exception as e:
             raise CustomException(e, sys)
-
-if __name__ == '__main__':
-    obj = DataIngestion()
-
-    train_data, test_data = obj.initiate_data_ingestion()
-
-    data_transformation = DataTransformation()
-
-    data_transformation.initiate_data_transformatin(train_data, test_data)
